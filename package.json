@@ -1,0 +1,11 @@
+{
+  "name": "tomas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startserver": "python -m SimpleHTTPServer 1337"
+  },
+  "author": "Tomas",
+  "license": "ISC"
+}
