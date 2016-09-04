@@ -3,6 +3,8 @@
   <head>
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
+    <script src='/socket.io/socket.io.js'></script>
+
     <meta charset="utf-8">
     <style>
       html, body {
@@ -13,56 +15,26 @@
       #map {
         height: 100%;
       }
+      button {
+       background: red;
+        position: absolute;
+        width: 25vh;
+        height: 6vh;
+        right: 2em;
+        bottom: 2em;
+        color: #fff;
+        border: none;
+        font-size: 2vh;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
-    <script>
-      
-      var map, markers = [];
-
-      function createMarker(pos) {
-        console.log({lat: pos.coords.latitude, lng: pos.coords.longitude, accuracy: pos.coords.accuracy});
-        var marker = new google.maps.Marker({
-          position: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-          map: map,
-          title: 'Hello!!!!'
-        });
-        markers.push(marker);
-        if (markers.length > 5) {
-          markers[markers.length - 1].setMap(null);
-          delete markers[markers.length - 1];
-        }
-      }
-
-      function initGetNewPosition() {
-          window.setInterval(function(){
-            navigator.geolocation.getCurrentPosition(createMarker);
-          }, 250);
-      }
-
-     function initMap() {
-     
-      if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(success);
-            initGetNewPosition();
-        } else {
-          console.log('Geo Location is not supported');
-        }   
-     }
-
-      function success(pos){
-        console.log(pos);
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-            zoom: 19
-        });
-      }
-/*
-        */
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGS0fknfTP6I-A9nt-IgFHi6sAVr52ufs&callback=initMap"
+    <button type="button" id="start">Start The Game</button>
+    <script src="/map.js" async defer></script>
+    <script src="/socket-client.js" async defer></script>
+    <script src="/placesapi.js" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu087HncbEoXGfAeY_1WRePxf9g1uSFx8&callback=initMap&libraries=places"
     async defer></script>
   </body>
 </html>
