@@ -19,5 +19,27 @@ function initPlacesService() {
     }
   });
  }
-var startbutton = document.querySelector('button');
+
+var startbutton = document.querySelector('button#start'),
+	cancelbutton =document.querySelector('button#cancel'),
+	raceInfo = document.querySelector('.raceinfo');
+
 startbutton.addEventListener('click', initPlacesService);
+
+cancelbutton.addEventListener('click', initCancelRace);
+
+function resetUi(){
+	startbutton.removeAttribute('hidden');
+	cancelbutton.setAttribute('hidden', 'hidden');
+	raceInfo.innerHTML = '';
+}
+
+
+function raceStart(pub) {
+	//lol fix
+	var pub = pub.pub;
+	startbutton.setAttribute('hidden', 'hidden');
+	cancelbutton.removeAttribute('hidden');
+	raceInfo.innerHTML = 'Get to ' +  pub.name  + ', ' + pub.vicinity + '!';
+
+}

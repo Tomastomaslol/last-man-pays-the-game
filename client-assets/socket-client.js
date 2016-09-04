@@ -16,8 +16,11 @@ socket.on('allUserPos', function(data) {
 	}
 });
 
+socket.on('cancelRace', function(data) {
+	cancelRace();
+});
+
 socket.on('sendPubToClients', function(data) {
-	console.log("GAME STARTS!!!", data);
 	createPubMarker(data);
 });
 function sendPubToServer(pub){
@@ -25,6 +28,11 @@ function sendPubToServer(pub){
 		socket.emit('sendPubToServer', { pub: pub })
 	}
 }
+
+function initCancelRace(){
+	socket.emit('cancelRace', {});
+}
+
 socket.on('error', console.error.bind(console));
 socket.on('message', console.log.bind(console));
 

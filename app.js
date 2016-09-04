@@ -50,6 +50,10 @@ io.on('connection', function(socket) {
         io.sockets.emit('sendPubToClients', pub);
     });
 
+    socket.on('cancelRace', function() {
+        io.sockets.emit('cancelRace', {});
+    });
+
     socket.on('disconnect', function () {
       socket.emit('disconnected', {id: socket.id});
     });

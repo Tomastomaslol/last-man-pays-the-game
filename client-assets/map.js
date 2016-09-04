@@ -1,4 +1,4 @@
-var map, markers = [];
+var map, pubMaker, markers = [];
 //create empty LatLngBounds object
 var bounds;
 
@@ -31,17 +31,23 @@ function resetMarkers(){
 function createPubMarker(pub) {
   var image = 'http://www.free-icons-download.net/images/beer-keg-icon-49881.png';
   console.log(pub);
-  var marker = new google.maps.Marker({
+  pubMaker = new google.maps.Marker({
       position: {lat: pub.pub.geometry.location.lat, lng: pub.pub.geometry.location.lng},
       map: map,
       title: "pub",
       icon: image
     });
 
-    bounds.extend(marker.position);
+    bounds.extend(pubMaker.position);
     map.fitBounds(bounds);
+    raceStart(pub);
 }
 
+
+function cancelRace(){
+  pubMaker.setMap(null);
+  resetUi();
+}
 
 
  function initMap() {

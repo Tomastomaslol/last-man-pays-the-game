@@ -26,14 +26,27 @@
         border: none;
         font-size: 2vh;
       }
+      .raceinfo {
+        position: absolute;
+        height: 9vh;
+        background: antiquewhite;
+        width: 26vh;
+        top: .5vh;
+        left: .5vh;
+        text-align: center;
+        padding: 1vh;
+        border-radius: 1vh;
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
     <button type="button" id="start">Start The Game</button>
+    <button type="button" id="cancel" hidden="hidden">Cancel The Game</button>
     <script src="/map.js" async defer></script>
     <script src="/socket-client.js" async defer></script>
     <script src="/placesapi.js" async defer></script>
+    <div class="raceinfo"></div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu087HncbEoXGfAeY_1WRePxf9g1uSFx8&callback=initMap&libraries=places"
     async defer></script>
   </body>
